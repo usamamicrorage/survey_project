@@ -30,15 +30,16 @@
                                     <tr>
                                         <td>{{ $c }}</td>
                                         <td>{{ $survey->title }}</td>
-                                        <td>{{ $survey->description }}</td>
+                                        <td>{{ Str::limit($survey->description, 150) }}</td>
                                         <td>
                                             <span
                                                 class="mx-2 badge bg-{{ $survey->questions_count == 0 ? 'danger' : 'success' }}">
                                                 {{ $survey->questions_count }}
                                             </span>
-                                            <a class="btn btn-dark btn-sm"
-                                                href="{{ route('questions.create', $survey->id) }}">Add</a>
-
+                                            @if ($survey->questions_count == 0)
+                                                <a class="btn btn-dark btn-sm"
+                                                    href="{{ route('questions.create', $survey->id) }}">Add</a>
+                                            @endif
                                             @if ($survey->questions_count > 0)
                                                 <a class="btn btn-info btn-sm"
                                                     href="{{ route('questions.show', $survey->id) }}">View</a>
@@ -54,11 +55,13 @@
                                                 class="badge bg-{{ $survey->totalResponses() == 0 ? 'danger' : 'success' }}">
                                                 {{ $survey->totalResponses() }}
                                             </span>
+                                            @if ($survey->totalResponses() > 0)
+                                                <a class="btn btn-dark btn-sm" href="javascript:void(0)">Analysis</a>
+                                            @endif
                                         </td>
                                         <td>
                                             <a href="{{ route('survey.public.link', $survey->id) }}"
                                                 class="btn btn-secondary btn-sm" target="_blank">Link</a>
-                                            <a class="btn btn-info btn-sm" href="javascript:void(0)">View Analytics</a>
 
                                         </td>
                                     </tr>
@@ -80,4 +83,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection

@@ -1,18 +1,19 @@
 @extends('layouts.authlayout')
-
 @section('content')
     <div class="container">
         <form action="{{ route('survey_reponse.submit', $survey->id) }}" method="POST">
             <div class="row">
-                <div class="col-md-8 offset-md-2">
+                <div class="col-md-10 offset-md-1">
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <h1>{{ $survey->title }}</h1>
                                     <p>{{ $survey->description }}</p>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 offset-md-8">
                                     <div class="form-group">
                                         <label for="profession">Profession:</label>
                                         <select name="profession_id" class="form-select form-control" required>
@@ -25,8 +26,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
 
+                        <div class="card-body">
                             {{-- Display success message --}}
                             @if (session('success'))
                                 <div class="alert alert-success">
@@ -38,7 +39,7 @@
                                 <div class="form-group">
                                     <p class="m-0 font-bold">{{ $index + 1 }}. {{ $question->title }}</p>
 
-                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex ">
                                         <div class="form-check form-check-inline">
                                             <input id="question_{{ $question->id }}_agree" class="form-check-input"
                                                 type="radio" name="responses[{{ $question->id }}]" value="agree"
@@ -63,11 +64,13 @@
                                     </div>
                                 </div>
                             @endforeach
+                            <hr>
                             <div class="text-end">
                                 <button type="submit" class="btn btn-primary">Submit Survey</button>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </form>
