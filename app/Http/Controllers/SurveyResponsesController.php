@@ -14,24 +14,23 @@ class SurveyResponsesController extends Controller
     {
         $survey = Survey::findOrFail($id);
 
-        // Validate request data
         $request->validate([
             'profession_id' => 'required|exists:professions,id',
             'responses' => 'required|array',
             'responses.*' => 'required|in:agree,disagree,not_applicable',
         ]);
 
-        // Generate a unique response group ID for this survey submission
         $responseGroupId = Str::uuid()->toString();
 
-        // Save each question's response with the same response group ID
         foreach ($request->input('responses') as $questionId => $response) {
             SurveyResponses::create([
                 'survey_id' => $survey->id,
                 'question_id' => $questionId,
                 'response' => $response,
                 'profession_id' => $request->input('profession_id'),
-                'response_group_id' => $responseGroupId, // Assign the group ID
+                'response_group_id' => $responseGroupId,
+                'age_group' => $request->input('age_group'),
+                'education' => $request->input('education'),
             ]);
         }
 

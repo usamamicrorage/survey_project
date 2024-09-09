@@ -9,7 +9,15 @@ class SurveyResponses extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['survey_id', 'question_id', 'response', 'profession_id', 'response_group_id'];
+    protected $fillable = [
+        'survey_id',
+        'question_id',
+        'response',
+        'profession_id',
+        'response_group_id',
+        'age_group',    // Add age group
+        'education'
+    ];
 
     public function survey()
     {

@@ -13,7 +13,31 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 offset-md-8">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="age_group">Age Group:</label>
+                                        <select name="age_group" id="age_group" class="form-control">
+                                            <option value="">Select Age Group</option>
+                                            <option value="18-25">18-25</option>
+                                            <option value="26-35">26-35</option>
+                                            <option value="36-45">36-45</option>
+                                            <option value="46+">46+</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="education">Education:</label>
+                                        <select name="education" id="education" class="form-control">
+                                            <option value="">Select Education Level</option>
+                                            <option value="High School">High School</option>
+                                            <option value="Bachelor's">Bachelor's</option>
+                                            <option value="Master's">Master's</option>
+                                            <option value="PhD">PhD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="profession">Profession:</label>
                                         <select name="profession_id" class="form-select form-control" required>
